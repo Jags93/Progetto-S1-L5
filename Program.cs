@@ -30,18 +30,23 @@ namespace ProgettoSettimanale
             Console.Write("Cognome: ");
             string cognome = Console.ReadLine();
 
-
-            Console.Write("Data di Nascita (dd/MM/yyyy): ");
-           
+             //accetta solo una data valida in numeri, altriment non va avanti finchè non metti una data valida
             DateTime dataNascita;
-            if (DateTime.TryParseExact(Console.ReadLine(), "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out dataNascita))
+            bool dataValida = false;
+
+            do
             {
-                // La data è stata convertita con successo
-            }
-            else
-            {
-                Console.WriteLine("Formato data non valido. Inserisci una data nel formato dd/MM/yyyy.");
-            }
+                Console.Write("Data di Nascita (dd/MM/yyyy): ");
+
+                if (DateTime.TryParseExact(Console.ReadLine(), "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out dataNascita))
+                {
+                    dataValida = true;
+                }
+                else
+                {
+                    Console.WriteLine("Formato data non valido. Inserisci una data nel formato dd/MM/yyyy.");
+                }
+            } while (!dataValida);
 
 
 
@@ -62,9 +67,27 @@ namespace ProgettoSettimanale
             Console.Write("Comune di Residenza: ");
             string comuneResidenza = Console.ReadLine();
 
+            //Accetta solo numeri, altrimenti da errore e ti fa rimettere i numeri validi, altrimenti non si va avanti
+            double redditoAnnuale;
+            bool inputValido = false;
 
-            Console.Write("Reddito Annuale: ");
-            double redditoAnnuale = double.Parse(Console.ReadLine());
+            do
+            {
+                Console.Write("Reddito Annuale: ");
+                string input = Console.ReadLine();
+
+                if (double.TryParse(input, out redditoAnnuale))
+                {
+                    inputValido = true;
+                }
+
+                else
+                {
+                    Console.WriteLine("Inserisci un valore numero valido.");
+                }
+
+
+            } while (!inputValido);
 
 
 
